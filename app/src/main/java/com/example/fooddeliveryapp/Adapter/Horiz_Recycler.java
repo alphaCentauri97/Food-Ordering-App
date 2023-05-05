@@ -55,12 +55,12 @@ public class Horiz_Recycler extends RecyclerView.Adapter<Horiz_Recycler.ViewHold
 
         if(check) {
             ArrayList<MainModel2> list = new ArrayList<>();
-            list.add(new MainModel2("Burger","200Rs","9:00AM - 12PM",R.drawable.burgerpic,
+            list.add(new MainModel2("Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
                     R.drawable.time_icon));
-            list.add(new MainModel2("Special Burger","200Rs","9:00AM - 12PM",R.drawable.burgerpic,
+            list.add(new MainModel2("Special Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
                     R.drawable.time_icon));
 
-            list.add(new MainModel2("Veg Burger","200Rs","9:00AM - 12PM",R.drawable.burgerpic,
+            list.add(new MainModel2("Veg Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
                     R.drawable.time_icon));
             updateReclerview.callback(position, list);
         }
@@ -75,26 +75,26 @@ public class Horiz_Recycler extends RecyclerView.Adapter<Horiz_Recycler.ViewHold
                     try {
                         if (position == 0){
                             ArrayList<MainModel2> list = new ArrayList<>();
-                            list.add(new MainModel2("Burger","200Rs","9:00AM - 12PM",R.drawable.burgerpic,
+                            list.add(new MainModel2("Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
                                     R.drawable.time_icon));
-                            list.add(new MainModel2("Special Burger","200Rs","9:00AM - 12PM",R.drawable.burgerpic,
+                            list.add(new MainModel2("Special Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
                                     R.drawable.time_icon));
 
-                            list.add(new MainModel2("Veg Burger","200Rs","9:00AM - 12PM",R.drawable.burgerpic,
+                            list.add(new MainModel2("Veg Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
                                     R.drawable.time_icon));
                             updateReclerview.callback(position,list);
                         }
                         else if(position == 1)
                         {
                             ArrayList<MainModel2> list = new ArrayList<>();
-                            list.add(new MainModel2("La Pino Pizza","200Rs","9:00AM - 12PM",R.drawable.pizza1,
+                            list.add(new MainModel2("La Pino Pizza","200","9:00AM - 12PM",R.drawable.pizza1,
                                     R.drawable.time_icon));
-                            list.add(new MainModel2("Cheezy Pizza","300Rs","9:00AM - 12PM",R.drawable.pizza2,
+                            list.add(new MainModel2("Cheezy Pizza","300","9:00AM - 12PM",R.drawable.pizza2,
                                     R.drawable.time_icon));
 
-                            list.add(new MainModel2("Mushroom Pizza","500Rs","9:00AM - 12PM",R.drawable.pizza3,
+                            list.add(new MainModel2("Mushroom Pizza","500","9:00AM - 12PM",R.drawable.pizza3,
                                     R.drawable.time_icon));
-                            list.add(new MainModel2("Onion Pizza","240Rs","9:00AM - 12PM",R.drawable.pizza4,
+                            list.add(new MainModel2("Onion Pizza","240","9:00AM - 12PM",R.drawable.pizza4,
                                     R.drawable.time_icon));
 
                             updateReclerview.callback(position,list);
@@ -102,24 +102,24 @@ public class Horiz_Recycler extends RecyclerView.Adapter<Horiz_Recycler.ViewHold
                         else if(position == 2)
                         {
                             ArrayList<MainModel2> list = new ArrayList<>();
-                            list.add(new MainModel2("Pasta","200Rs","9:00AM - 12PM",R.drawable.pasta1,
+                            list.add(new MainModel2("Pasta","200","9:00AM - 12PM",R.drawable.pasta1,
                                     R.drawable.time_icon));
-                            list.add(new MainModel2("Cheezy Pasta","300Rs","9:00AM - 12PM",R.drawable.pasta2,
+                            list.add(new MainModel2("Cheezy Pasta","300","9:00AM - 12PM",R.drawable.pasta2,
                                     R.drawable.time_icon));
 
-                            list.add(new MainModel2("Pasta3","500Rs","9:00AM - 12PM",R.drawable.pasta3,
+                            list.add(new MainModel2("Pasta3","500","9:00AM - 12PM",R.drawable.pasta3,
                                     R.drawable.time_icon));
                             updateReclerview.callback(position,list);
                         }
                         else if(position == 3)
                         {
                             ArrayList<MainModel2> list = new ArrayList<>();
-                            list.add(new MainModel2("Noodles1","200Rs","9:00AM - 12PM",R.drawable.noodles1,
+                            list.add(new MainModel2("Noodles1","200","9:00AM - 12PM",R.drawable.noodles1,
                                     R.drawable.time_icon));
-                            list.add(new MainModel2("Cheezy Noodles","300Rs","9:00AM - 12PM",R.drawable.noodles2,
+                            list.add(new MainModel2("Cheezy Noodles","300","9:00AM - 12PM",R.drawable.noodles2,
                                     R.drawable.time_icon));
 
-                            list.add(new MainModel2("Chinese Noodle","500Rs","9:00AM - 12PM",R.drawable.noodles3,
+                            list.add(new MainModel2("Chinese Noodle","500","9:00AM - 12PM",R.drawable.noodles3,
                                     R.drawable.time_icon));
 
                             updateReclerview.callback(position,list);

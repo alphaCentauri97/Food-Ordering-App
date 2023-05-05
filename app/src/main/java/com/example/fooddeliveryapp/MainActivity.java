@@ -1,5 +1,6 @@
 package com.example.fooddeliveryapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -31,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     GoogleSignInClient mGoogleSignInClient;
     ActivityMainBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken(getString(com.firebase.ui.auth.R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
@@ -101,4 +101,6 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //        return true;
 //    }
+
+
 }

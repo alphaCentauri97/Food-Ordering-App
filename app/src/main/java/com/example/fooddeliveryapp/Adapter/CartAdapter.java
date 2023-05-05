@@ -1,23 +1,46 @@
 package com.example.fooddeliveryapp.Adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.fooddeliveryapp.ModelClass.MainModel2;
+import com.example.fooddeliveryapp.ModelClass.OrderModel;
+import com.example.fooddeliveryapp.OrderPaymentActivity;
 import com.example.fooddeliveryapp.R;
 import com.example.fooddeliveryapp.RoomDatabase.AppDatabse;
 import com.example.fooddeliveryapp.RoomDatabase.Cartmodel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
 
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,6 +49,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     List<Cartmodel> itemList;
     Context context;
+    private DatabaseReference mDatabase =FirebaseDatabase.getInstance().getReference();;
+    private FirebaseAuth auth = FirebaseAuth.getInstance();;
+
+
 
     public CartAdapter(Context context) {
         this.context = context;
@@ -39,7 +66,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.cart_section,viewGroup,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.cart_section, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -47,7 +74,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, @SuppressLint("RecyclerView") int i) {
         viewHolder.itempic.setImageResource(itemList.get(i).item_pic);
-        viewHolder.itemPrice.setText(itemList.get(i).price);
+        viewHolder.itemPrice.setText(itemList.get(i).price+" \u20B9");
         viewHolder.itemname.setText(itemList.get(i).item_name);
         viewHolder.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +83,28 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 db.userDao().delete(itemList.get(i));
                 itemList.remove(itemList.get(i));
                 notifyDataSetChanged();
+            }
+        });
+        viewHolder.btorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                makePayment();
+                Intent intent = new Intent(context, OrderPaymentActivity.class);
+                intent.putExtra("product",itemList.get(i).item_name);
+                Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), itemList.get(i).item_pic);
+
+// Convert the bitmap to a string using Base64 encoding
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+// Save the encoded string to shared preferences
+                SharedPreferences.Editor editor = context.getSharedPreferences("my_prefs", MODE_PRIVATE).edit();
+                editor.putString("image", encoded);
+                editor.apply();
+                intent.putExtra("price",itemList.get(i).price);
+                context.startActivity(intent);
             }
         });
     }
@@ -68,9 +117,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView itemname,itemPrice;
+        TextView itemname, itemPrice;
         Button btorder;
-        ImageView itempic,cancel;
+        ImageView itempic, cancel;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 

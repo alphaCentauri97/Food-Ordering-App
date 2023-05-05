@@ -54,7 +54,7 @@ public class Vertical_Recycler extends RecyclerView.Adapter<Vertical_Recycler.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.tvproduct.setText(arrayList.get(position).getProductname());
-        holder.tvRs.setText(arrayList.get(position).getPriceRs());
+        holder.tvRs.setText(arrayList.get(position).getPriceRs()+" \u20B9");
         holder.tvdate.setText(arrayList.get(position).getDate());
         holder.productimg.setImageResource(arrayList.get(position).getProductimg());
         holder.itemView.findViewById(R.id.add_to_cart).setOnClickListener(new View.OnClickListener() {

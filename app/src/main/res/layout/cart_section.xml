@@ -29,43 +29,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginStart="18dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/itemname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
                 android:layout_marginTop="14dp"
                 android:fontFamily="@font/nunito_extrabold"
                 android:text="La pinos pizza"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tvprice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="7dp"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/nunito_extrabold"
                 android:text="300 Rs"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="12sp"/>
+                android:textSize="13sp"/>
 
         </LinearLayout>
 
         <Button
             android:id="@+id/btorder"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
             android:background="@drawable/corner"
             android:backgroundTint="@color/main_color"
             android:fontFamily="@font/nunito_extrabold"
             android:text="Order"
+            android:textSize="12sp"
             android:textColor="@color/white"
             android:layout_gravity="center"/>
 
