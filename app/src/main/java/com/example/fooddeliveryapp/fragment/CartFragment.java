@@ -1,10 +1,6 @@
 package com.example.fooddeliveryapp.fragment;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddeliveryapp.Adapter.CartAdapter;
-import com.example.fooddeliveryapp.ModelClass.MainModel2;
 import com.example.fooddeliveryapp.R;
 import com.example.fooddeliveryapp.RoomDatabase.AppDatabse;
 import com.example.fooddeliveryapp.RoomDatabase.Cartmodel;
 
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

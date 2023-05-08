@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:text="Hello Satyam Jaiswal"
                     android:textSize="18sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:fontFamily="@font/nunito_extrabold"/>
 
                 <TextView
@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:text="What do You want"
                     android:textSize="13sp"
-
+                    android:textColor="@color/white"
                     android:fontFamily="@font/nunito_extrabold"/>
             </LinearLayout>
         </LinearLayout>
@@ -55,6 +55,7 @@
             >
 
             <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_view"
                 android:layout_width="wrap_content"
                 android:layout_height="45dp"
                 android:layout_weight="1"
@@ -62,20 +63,6 @@
                 android:background="@drawable/corner"
                 app:queryHint="Search Food.."
                 app:iconifiedByDefault="false"/>
-
-            <Button
-                android:id="@+id/btsearch"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/corner"
-                android:backgroundTint="#ED2C2C"
-                android:fontFamily="@font/nunito_extrabold"
-                android:text="Search"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
 

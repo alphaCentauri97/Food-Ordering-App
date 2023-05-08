@@ -114,7 +114,7 @@ public class OrderPaymentActivity extends AppCompatActivity implements PaymentRe
 
         Checkout checkout = new Checkout();
         checkout.setKeyID("rzp_test_S9nfQQTurXm5WQ");
-
+        checkout.setImage(R.drawable.app_logo);
 
 
         final Activity activity = this;
@@ -122,12 +122,14 @@ public class OrderPaymentActivity extends AppCompatActivity implements PaymentRe
 
         try {
             JSONObject options = new JSONObject();
-
-            options.put("name", "Merchant Name");
+            SharedPreferences preferences = getApplicationContext().getSharedPreferences("MyPref",MODE_PRIVATE);
+            String username = preferences.getString("username","");
+            options.put("name",username );
             options.put("description", "Reference No. #123456");
             options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg");
             options.put("theme.color", "#3399cc");
             options.put("currency", "INR");
+            options.put("image", R.drawable.app_logo);
             options.put("amount", price);//pass amount in currency subunits
             options.put("prefill.email", "gaurav.kumar@example.com");
             options.put("prefill.contact", "9532875308");

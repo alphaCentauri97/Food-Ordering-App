@@ -13,26 +13,26 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fooddeliveryapp.ModelClass.MainModel;
-import com.example.fooddeliveryapp.ModelClass.MainModel2;
+import com.example.fooddeliveryapp.ModelClass.Horizontal_itemModel;
+import com.example.fooddeliveryapp.ModelClass.Vertical_itemModel;
 import com.example.fooddeliveryapp.R;
 import com.example.fooddeliveryapp.UpdateReclerview;
 ;
 
 import java.util.ArrayList;
 
-public class Horiz_Recycler extends RecyclerView.Adapter<Horiz_Recycler.ViewHolder> {
+public class Horiz_Recycler_Adapter extends RecyclerView.Adapter<Horiz_Recycler_Adapter.ViewHolder> {
 
     UpdateReclerview updateReclerview;
 
     Context context;
-    ArrayList<MainModel> arrayList;
+    ArrayList<Horizontal_itemModel> arrayList;
 
     boolean check = true;
     boolean select = true;
     int row_index = -1;
 
-    public Horiz_Recycler(UpdateReclerview updateReclerview, Context context, ArrayList<MainModel> arrayList) {
+    public Horiz_Recycler_Adapter(UpdateReclerview updateReclerview, Context context, ArrayList<Horizontal_itemModel> arrayList) {
         this.updateReclerview = updateReclerview;
         this.context = context;
         this.arrayList = arrayList;
@@ -54,13 +54,13 @@ public class Horiz_Recycler extends RecyclerView.Adapter<Horiz_Recycler.ViewHold
         holder.imageView.setImageResource(arrayList.get(position).getImg());
 
         if(check) {
-            ArrayList<MainModel2> list = new ArrayList<>();
-            list.add(new MainModel2("Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
+            ArrayList<Vertical_itemModel> list = new ArrayList<>();
+            list.add(new Vertical_itemModel("Aloo Tikki Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
                     R.drawable.time_icon));
-            list.add(new MainModel2("Special Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
+            list.add(new Vertical_itemModel("Paneer Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
                     R.drawable.time_icon));
 
-            list.add(new MainModel2("Veg Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
+            list.add(new Vertical_itemModel("Chicken Tikka Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
                     R.drawable.time_icon));
             updateReclerview.callback(position, list);
         }
@@ -74,52 +74,52 @@ public class Horiz_Recycler extends RecyclerView.Adapter<Horiz_Recycler.ViewHold
 
                     try {
                         if (position == 0){
-                            ArrayList<MainModel2> list = new ArrayList<>();
-                            list.add(new MainModel2("Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
+                            ArrayList<Vertical_itemModel> list = new ArrayList<>();
+                            list.add(new Vertical_itemModel("Aloo Tikki Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
                                     R.drawable.time_icon));
-                            list.add(new MainModel2("Special Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
+                            list.add(new Vertical_itemModel("Paneer Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
                                     R.drawable.time_icon));
 
-                            list.add(new MainModel2("Veg Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
+                            list.add(new Vertical_itemModel("Chicken Tikka Burger","200","9:00AM - 12PM",R.drawable.burgerpic,
                                     R.drawable.time_icon));
                             updateReclerview.callback(position,list);
                         }
                         else if(position == 1)
                         {
-                            ArrayList<MainModel2> list = new ArrayList<>();
-                            list.add(new MainModel2("La Pino Pizza","200","9:00AM - 12PM",R.drawable.pizza1,
+                            ArrayList<Vertical_itemModel> list = new ArrayList<>();
+                            list.add(new Vertical_itemModel("Margherita pizza","200","9:00AM - 12PM",R.drawable.pizza1,
                                     R.drawable.time_icon));
-                            list.add(new MainModel2("Cheezy Pizza","300","9:00AM - 12PM",R.drawable.pizza2,
+                            list.add(new Vertical_itemModel("Cheezy Pizza","300","9:00AM - 12PM",R.drawable.pizza2,
                                     R.drawable.time_icon));
 
-                            list.add(new MainModel2("Mushroom Pizza","500","9:00AM - 12PM",R.drawable.pizza3,
+                            list.add(new Vertical_itemModel("Mushroom Pizza","500","9:00AM - 12PM",R.drawable.pizza3,
                                     R.drawable.time_icon));
-                            list.add(new MainModel2("Onion Pizza","240","9:00AM - 12PM",R.drawable.pizza4,
+                            list.add(new Vertical_itemModel("Onion Pizza","240","9:00AM - 12PM",R.drawable.pizza4,
                                     R.drawable.time_icon));
 
                             updateReclerview.callback(position,list);
                         }
                         else if(position == 2)
                         {
-                            ArrayList<MainModel2> list = new ArrayList<>();
-                            list.add(new MainModel2("Pasta","200","9:00AM - 12PM",R.drawable.pasta1,
+                            ArrayList<Vertical_itemModel> list = new ArrayList<>();
+                            list.add(new Vertical_itemModel("Makhani Pasta","200","9:00AM - 12PM",R.drawable.pasta1,
                                     R.drawable.time_icon));
-                            list.add(new MainModel2("Cheezy Pasta","300","9:00AM - 12PM",R.drawable.pasta2,
+                            list.add(new Vertical_itemModel("Cheezy Pasta","300","9:00AM - 12PM",R.drawable.pasta2,
                                     R.drawable.time_icon));
 
-                            list.add(new MainModel2("Pasta3","500","9:00AM - 12PM",R.drawable.pasta3,
+                            list.add(new Vertical_itemModel("Tandoori Paneer Pasta","500","9:00AM - 12PM",R.drawable.pasta3,
                                     R.drawable.time_icon));
                             updateReclerview.callback(position,list);
                         }
                         else if(position == 3)
                         {
-                            ArrayList<MainModel2> list = new ArrayList<>();
-                            list.add(new MainModel2("Noodles1","200","9:00AM - 12PM",R.drawable.noodles1,
+                            ArrayList<Vertical_itemModel> list = new ArrayList<>();
+                            list.add(new Vertical_itemModel("Masala Noodles","200","9:00AM - 12PM",R.drawable.noodles1,
                                     R.drawable.time_icon));
-                            list.add(new MainModel2("Cheezy Noodles","300","9:00AM - 12PM",R.drawable.noodles2,
+                            list.add(new Vertical_itemModel("Veggie Hakka Noodles","300","9:00AM - 12PM",R.drawable.noodles2,
                                     R.drawable.time_icon));
 
-                            list.add(new MainModel2("Chinese Noodle","500","9:00AM - 12PM",R.drawable.noodles3,
+                            list.add(new Vertical_itemModel("Schezwan Noodles","500","9:00AM - 12PM",R.drawable.noodles3,
                                     R.drawable.time_icon));
 
                             updateReclerview.callback(position,list);

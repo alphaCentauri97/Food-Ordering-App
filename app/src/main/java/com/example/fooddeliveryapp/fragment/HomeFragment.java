@@ -4,40 +4,34 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.example.fooddeliveryapp.Adapter.Horiz_Recycler;
-import com.example.fooddeliveryapp.Adapter.Vertical_Recycler;
+import com.example.fooddeliveryapp.Adapter.Horiz_Recycler_Adapter;
+import com.example.fooddeliveryapp.Adapter.Vertical_Recycler_Adapter;
 
-import com.example.fooddeliveryapp.ModelClass.MainModel;
-import com.example.fooddeliveryapp.ModelClass.MainModel2;
+import com.example.fooddeliveryapp.ModelClass.Horizontal_itemModel;
+import com.example.fooddeliveryapp.ModelClass.Vertical_itemModel;
 import com.example.fooddeliveryapp.R;
 import com.example.fooddeliveryapp.UpdateReclerview;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment implements UpdateReclerview {
+public class HomeFragment extends Fragment implements UpdateReclerview,SearchView.OnQueryTextListener {
 
     RecyclerView h_recycler,v_recycler;
-    ArrayList<MainModel> arrayList;
-    Horiz_Recycler horiz_recycler;
-    Vertical_Recycler vertical_recycler;
-    ArrayList<MainModel2> mainModel2;
+    ArrayList<Horizontal_itemModel> arrayList;
+    Horiz_Recycler_Adapter horiz_recycler;
+    Vertical_Recycler_Adapter vertical_recycler;
+    ArrayList<Vertical_itemModel> mainModel2;
+    SearchView searchView;
     public HomeFragment() {
         // Required empty public constructor
 
@@ -67,13 +61,13 @@ public class HomeFragment extends Fragment implements UpdateReclerview {
         h_recycler = view.findViewById(R.id.horiz_recycler);
         v_recycler = view.findViewById(R.id.verti_recycler);
 
-        arrayList.add(new MainModel(R.drawable.burgur,"Burrger"));
-        arrayList.add(new MainModel(R.drawable.pizza,"Pizza"));
-        arrayList.add(new MainModel(R.drawable.pasta,"Pasta"));
-        arrayList.add(new MainModel(R.drawable.noodle,"Noodle"));
-        arrayList.add(new MainModel(R.drawable.icecrream,"Ice-Cream"));
+        arrayList.add(new Horizontal_itemModel(R.drawable.burgur,"Burrger"));
+        arrayList.add(new Horizontal_itemModel(R.drawable.pizza,"Pizza"));
+        arrayList.add(new Horizontal_itemModel(R.drawable.pasta,"Pasta"));
+        arrayList.add(new Horizontal_itemModel(R.drawable.noodle,"Noodle"));
+        arrayList.add(new Horizontal_itemModel(R.drawable.icecrream,"Ice-Cream"));
 
-        horiz_recycler = new Horiz_Recycler(this,getActivity(),arrayList);
+        horiz_recycler = new Horiz_Recycler_Adapter(this,getActivity(),arrayList);
         h_recycler.setAdapter(horiz_recycler);
         h_recycler.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
 
@@ -82,10 +76,12 @@ public class HomeFragment extends Fragment implements UpdateReclerview {
 
         mainModel2 = new ArrayList<>();
 
-        vertical_recycler = new Vertical_Recycler(getActivity(),mainModel2);
+        vertical_recycler = new Vertical_Recycler_Adapter(getActivity(),mainModel2);
         v_recycler.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
         v_recycler.setAdapter(vertical_recycler);
         v_recycler.setHasFixedSize(true);
+        searchView = view.findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(this);
 
         return view;
 
@@ -93,11 +89,22 @@ public class HomeFragment extends Fragment implements UpdateReclerview {
     }
 
     @Override
-    public void callback(int position, ArrayList<MainModel2> list) {
+    public void callback(int position, ArrayList<Vertical_itemModel> list) {
 
-        vertical_recycler = new Vertical_Recycler(getContext(),list);
+        vertical_recycler = new Vertical_Recycler_Adapter(getContext(),list);
         vertical_recycler.notifyDataSetChanged();
         v_recycler.setAdapter(vertical_recycler);
 
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String text) {
+        vertical_recycler.getFilter().filter(text);
+        return false;
     }
 }

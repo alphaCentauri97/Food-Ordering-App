@@ -1,11 +1,11 @@
 package com.example.fooddeliveryapp.ModelClass;
 
-public class    MainModel {
+public class Horizontal_itemModel {
 
     private int img;
     private String imgname;
 
-    public MainModel(int img, String imgname) {
+    public Horizontal_itemModel(int img, String imgname) {
         this.img = img;
         this.imgname = imgname;
     }
