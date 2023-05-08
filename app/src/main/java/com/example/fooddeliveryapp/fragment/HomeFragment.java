@@ -38,8 +38,6 @@ public class HomeFragment extends Fragment implements UpdateReclerview {
     Horiz_Recycler horiz_recycler;
     Vertical_Recycler vertical_recycler;
     ArrayList<MainModel2> mainModel2;
-    public static ImageView imageView;
-
     public HomeFragment() {
         // Required empty public constructor
 

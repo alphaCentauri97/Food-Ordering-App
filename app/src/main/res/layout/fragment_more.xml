@@ -3,32 +3,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4B9ADA"
+    android:background="#6AB6F4"
+    android:orientation="vertical"
     tools:context=".fragment.MoreFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:background="@drawable/corner"
+        android:backgroundTint="@color/orange"
+        android:paddingVertical="15dp"
+        android:layout_marginHorizontal="4dp"
+        android:elevation="15dp">
 
-        <TextView
-            android:id="@+id/user_name"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="22sp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:fontFamily="@font/nunito_extrabold"
-            android:text="Satyam Jaiswal" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center|start"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/nunito_extrabold"
+                android:text="Satyam Jaiswal"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+            <TextView
+                android:id="@+id/user_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:text="usermail@gmail.com"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/userImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_weight="1"
-            android:src="@drawable/userimage"/>
+            android:src="@drawable/userimage"
+            android:layout_marginEnd="50dp"/>
 
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"/>
 </LinearLayout>

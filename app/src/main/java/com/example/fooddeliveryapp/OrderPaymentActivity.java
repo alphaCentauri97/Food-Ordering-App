@@ -1,5 +1,6 @@
 package com.example.fooddeliveryapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -16,18 +17,30 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.fooddeliveryapp.databinding.ActivityOrderPaymentBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+
 public class OrderPaymentActivity extends AppCompatActivity implements PaymentResultListener {
 
     ActivityOrderPaymentBinding binding;
     static int counter = 1;
-    String price="";
+    private String price="",name="",encoded="";
     static int new_price = 0;
+    private DatabaseReference mdatabase;
+    private FirebaseAuth auth;
     static int product_price = 0;
+    Bitmap bitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,20 +48,23 @@ public class OrderPaymentActivity extends AppCompatActivity implements PaymentRe
         setContentView(binding.getRoot());
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra("product");
+        name = intent.getStringExtra("product");
         price = intent.getStringExtra("price");
         product_price  = Integer.parseInt(price);
 
         SharedPreferences prefs = getSharedPreferences("my_prefs", MODE_PRIVATE);
-        String encoded = prefs.getString("image", "");
+        encoded = prefs.getString("image", "");
 
         byte[] byteArray = Base64.decode(encoded, Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         binding.productimg.setImageBitmap(bitmap);
 
         binding.productName.setText(name);
 
         binding.tvprice.setText(price+" \u20B9");
+
+        mdatabase = FirebaseDatabase.getInstance().getReference();
+        auth = FirebaseAuth.getInstance();
 
         binding.bAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +126,6 @@ public class OrderPaymentActivity extends AppCompatActivity implements PaymentRe
             options.put("name", "Merchant Name");
             options.put("description", "Reference No. #123456");
             options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg");
-//            options.put("order_id", "order_DBJOWzybf0sJbb");//from response of step 3.
             options.put("theme.color", "#3399cc");
             options.put("currency", "INR");
             options.put("amount", price);//pass amount in currency subunits
@@ -130,12 +145,45 @@ public class OrderPaymentActivity extends AppCompatActivity implements PaymentRe
 
     @Override
     public void onPaymentSuccess(String s) {
-        Toast.makeText(this, "Payment SuccessFul", Toast.LENGTH_SHORT).show();
+        HashMap<String,String> order = new HashMap<>();
+        order.put("item_name",name);
+        order.put("item_price",price);
+        order.put("item_img",encoded);
+        order.put("item_quantity",String.valueOf(counter));
+        order.put("payment","successful");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = dateFormat.format(new Date());
+        order.put("date",date);
+
+        String id = mdatabase.push().getKey();
+        mdatabase.child("Order").child(auth.getUid()).child(id).setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(OrderPaymentActivity.this, "Payment SuccessFul"+date, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public void onPaymentError(int i, String s) {
-        Toast.makeText(this, "Payment UnSuccessFul", Toast.LENGTH_SHORT).show();
 
+        HashMap<String,String> order = new HashMap<>();
+        order.put("item_name",name);
+        order.put("item_price",price);
+        order.put("item_img",encoded);
+        order.put("item_quantity",String.valueOf(counter));
+        order.put("payment","failed");
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = dateFormat.format(new Date());
+        order.put("date",date);
+
+        String id = mdatabase.push().getKey();
+        mdatabase.child("Order").child(auth.getUid()).child(id).setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(OrderPaymentActivity.this, "Payment failed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

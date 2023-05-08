@@ -1,23 +1,30 @@
 package com.example.fooddeliveryapp.ModelClass;
 
 public class OrderModel {
-    public int item_pic;
+    private String item_pic;
+    private String item_name,payment;
+    private String price;
 
-    public String item_name;
-
-    public String price;
-
-    public OrderModel(int item_pic, String item_name, String price) {
+    public OrderModel(String item_pic, String item_name, String price,String payment) {
         this.item_pic = item_pic;
         this.item_name = item_name;
         this.price = price;
+        this.payment = payment;
     }
 
-    public int getItem_pic() {
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public String getItem_pic() {
         return item_pic;
     }
 
-    public void setItem_pic(int item_pic) {
+    public void setItem_pic(String item_pic) {
         this.item_pic = item_pic;
     }
 

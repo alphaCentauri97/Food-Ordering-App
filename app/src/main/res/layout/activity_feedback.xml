@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_main_color"
+    tools:context=".FeedbackActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        app:srcCompat="@drawable/arrow_back" />
+
+
+
+        <EditText
+            android:id="@+id/etfeedback"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:letterSpacing="0.065"
+            android:gravity="start"
+            android:hint="Write us Feedback"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:background="@drawable/corner"
+            android:minHeight="55dp"
+            android:textSize="14sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/corner"
+            android:backgroundTint="@color/main_color"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:paddingHorizontal="30dp"
+            android:text="Send Feedback"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.905" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

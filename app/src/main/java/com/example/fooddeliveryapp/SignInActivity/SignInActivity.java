@@ -56,7 +56,7 @@ public class SignInActivity extends AppCompatActivity {
 
 
         database = FirebaseDatabase.getInstance();
-        auth = FirebaseAuth.getInstance();
+            auth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(SignInActivity.this);
         progressDialog.setTitle("Sign In");
         progressDialog.setMessage("Sign In your Account");
@@ -64,7 +64,7 @@ public class SignInActivity extends AppCompatActivity {
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken(getString(com.firebase.ui.auth.R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 

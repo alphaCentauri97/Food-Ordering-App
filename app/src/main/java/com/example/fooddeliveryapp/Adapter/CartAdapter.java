@@ -3,54 +3,36 @@ package com.example.fooddeliveryapp.Adapter;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.fooddeliveryapp.ModelClass.MainModel2;
-import com.example.fooddeliveryapp.ModelClass.OrderModel;
+
 import com.example.fooddeliveryapp.OrderPaymentActivity;
 import com.example.fooddeliveryapp.R;
 import com.example.fooddeliveryapp.RoomDatabase.AppDatabse;
 import com.example.fooddeliveryapp.RoomDatabase.Cartmodel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.razorpay.Checkout;
-import com.razorpay.PaymentResultListener;
-
-import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     List<Cartmodel> itemList;
     Context context;
-    private DatabaseReference mDatabase =FirebaseDatabase.getInstance().getReference();;
-    private FirebaseAuth auth = FirebaseAuth.getInstance();;
 
 
 
@@ -88,7 +70,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         viewHolder.btorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                makePayment();
                 Intent intent = new Intent(context, OrderPaymentActivity.class);
                 intent.putExtra("product",itemList.get(i).item_name);
                 Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), itemList.get(i).item_pic);
